@@ -1,0 +1,24 @@
+.container {
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.main {
+    width: 500px;
+    height: 500px;
+    margin: 0;
+    margin-right: 6px;
+    float: left;
+}
+
+.sidebar {
+    width: 300px;
+    height: 500px;
+    float: left;
+}
+
+#content1, #content2 {
+    margin: 0;
+    margin-bottom: 6px;
+}
