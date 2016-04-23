@@ -1,24 +1,24 @@
 
 
-            function home() {
-                var text = jQuery('#home-template').html();
-                
-                var template = Handlebars.compile(text);
-                
-                var content = template(data);
-                
-                jQuery('#app').html(content);
-            }
+function home() {
+            var text = jQuery('#home-template').html();
             
-            function page(number) {
-                var text = jQuery('#page-template').html();
+            var template = Handlebars.compile(text);
             
-                var template = Handlebars.compile(text);
-                
-                var content = template(data.results[number]);
-                
-                jQuery('#app').html(content);
-            }
+            var content = template(data);
+            
+            jQuery('#app').html(content);
+}
+
+function page(number) {
+            var text = jQuery('#page-template').html();
+            
+            var template = Handlebars.compile(text);
+            
+            var content = template(data.results[number]);
+            
+            jQuery('#app').html(content);
+}
         
 
 function donate(number) {
@@ -31,16 +31,22 @@ function donate(number) {
     jQuery('#app').html(content);
 }
 
-var routes = {}, el;
+function addDonation(e) {
+    e.preventDefault();
+    var name = e.target['name'].value,
+        amount = e.target['amount'].value,
+        id = parseInt(e.target['id'].value, 10);
+        
+        data.results[id].donations.push({donor: name, amt: amount, date: Date.now()});
+        
+        console.log(data.results[id].donations);
+        
+        window.location.href = '#page/' + id;
+}
 
 function addRoute(path, callback) {
     routes[path] = callback;
 }
-
-addRoute('', home);
-addRoute('#home', home);
-addRoute('#page', page);
-addRoute('#donate', donate);
 
 function displayRoute() {
     el = el || document.getElementById('app'),
@@ -60,19 +66,13 @@ function displayRoute() {
     
     console.log('displayRoute()');
 }
+
+var routes = {}, el;
+
+addRoute('', home);
+addRoute('#home', home);
+addRoute('#page', page);
+addRoute('#donate', donate);
         
 window.addEventListener('load', displayRoute, false);
 window.addEventListener('hashchange', displayRoute, false);
-
-function addDonation(e) {
-    e.preventDefault();
-    var name = e.target['name'].value,
-        amount = e.target['amount'].value,
-        id = parseInt(e.target['id'].value, 10);
-        
-        data.results[id].donations.push({donor: name, amt: amount, date: Date.now()});
-        
-        console.log(data.results[id].donations);
-        
-        window.location.href = '#page/' + id;
-}
