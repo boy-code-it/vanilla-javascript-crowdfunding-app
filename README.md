@@ -1,4 +1,4 @@
-# vanilla-javascript-crowdfunding-app
+# Vanilla Javascript Crowdfunding App
 Vanilla Javascript Crowdfunding App
 
 - *data.js*: The data for the app, wrapped in a single object.
